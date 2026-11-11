@@ -58,7 +58,7 @@ async function runClient() {
     try {
       const resources = await client.listResources();
       resources.resources.forEach((resource, index) => {
-        console.log(` ${index + 1}. ${resource.name}：${resource.description}`);
+        console.log(`${index + 1}. ${resource.name}：${resource.description}`);
       });
 
       if (resources.resources.length > 0) {
