@@ -19,11 +19,13 @@
   "packageManager": "pnpm@12.18.0",
   "type": "module",
   "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.32.2",
     "@modelcontextprotocol/server": "^2.4.0",
     "zod": "^4.6.7"
   },
   "devDependencies": {
     "@types/node": "^26.6.6",
+    "prettier": "^3.9.10",
     "typescript": "^7.0.2"
   }
 }
