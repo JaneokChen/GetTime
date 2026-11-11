@@ -80,7 +80,7 @@ server.registerResource(
 
 // 注册提示词
 server.registerPrompt(
-  "time-query",
+  "time_query",
   {
     // 2. 配置对象（包含描述和参数 Schema）
     description:
