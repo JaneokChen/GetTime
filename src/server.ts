@@ -1,5 +1,5 @@
 import { McpServer } from "@modelcontextprotocol/server";
-import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { StdioServerTransport } from "@modelcontextprotocol/server/stdio";
 import { z } from "zod";
 import http from "http";
 
@@ -40,20 +40,15 @@ server.registerTool(
 
 // 创建 http 资源服务器
 const PORT = 3000;
+const SERVER_INFO = {
+  name: "mcp_server",
+  version: "1.0.0",
+  capabilities: ["tools", "resources", "prompts"],
+};
 const resourceServer = http.createServer((req, res) => {
-  if (req.url === "/server-info.json") {
+  if (req.url === "/server_info.json") {
     res.writeHead(200, { "Content-Type": "application/json" });
-    res.end(
-      JSON.stringify(
-        {
-          name: "mcp_server",
-          version: "1.0.0",
-          capabilities: ["tools", "resources", "prompts"],
-        },
-        null,
-        2,
-      ),
-    );
+    res.end(JSON.stringify(SERVER_INFO));
   } else {
     res.writeHead(404);
     res.end("Not Found");
@@ -77,15 +72,7 @@ server.registerResource(
       {
         uri: `http://localhost:${PORT}/server_info.json`,
         mimeType: "application/json",
-        text: JSON.stringify(
-          {
-            name: "mcp_server",
-            version: "1.0.0",
-            capabilities: ["tools", "resources", "prompts"],
-          },
-          null,
-          2,
-        ),
+        text: JSON.stringify(SERVER_INFO, null, 2),
       },
     ],
   }),
@@ -108,7 +95,7 @@ server.registerPrompt(
           content: {
             type: "text",
             text: `用户询问: ${
-              question || "当前时间是多少？"
+              question || "当前时间是？"
             }\n助手回答: 当前时间是 ${new Date().toString()}`,
           },
         },

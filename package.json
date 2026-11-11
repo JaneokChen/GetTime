@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/client.ts",
+    "start:server": "node src/server.ts",
+    "start:client": "node src/client.ts",
+    "typecheck": "tsc --noEmit"
   },
   "keywords": [],
   "author": "",
